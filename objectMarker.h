@@ -1,6 +1,6 @@
-#ifndef OBJECTMAKER_H_
-# define OBJECTMAKER_H_
+#ifndef OBJECTMARKER_H_
+# define OBJECTMARKER_H_
 
 
 
-#endif /* !OBJECTMAKER_H_ */
+#endif /* !OBJECTMARKER_H_ */
