@@ -3,13 +3,21 @@
 #include <stdio.h>
 #include <string.h>
 
-static char *savingfile = "test.txt";
+static char savingfile[128] = "";
+static char imagefolder[128] = "";
+
 void savedMarkedImage(char *imagepath, int width, int height, int marginleft, int margintop);
+int printhowtouse();
+int checkoptions(int argc, char *argv[]);
+int testoptions();
+int file_exist (char *filename);
 
 int main(int argc, char *argv[])
 {
-  char *lol = "images/myimage.jpg";
-  savedMarkedImage(lol, 0, 0, 0, 0);
+  if(checkoptions(argc, argv) == 0) return 0;
+  if(testoptions() == 0) return 0;
+  //char *lol = "images/myimage.jpg";
+  //savedMarkedImage(lol, 0, 0, 0, 0);
   return 0;
 }
 
@@ -26,4 +34,79 @@ void savedMarkedImage(char *imagepath, int width, int height, int marginleft, in
   else {
     // Throw an error...
   }
+}
+
+int printhowtouse()
+{
+  printf("objectMarker : created by Paul Semel for an end year project with his awesome team. It is used to mark an image of precise object.\n");
+  printf("This tool is often used when you want to create a classifier for an object recognition in an image.\n\n");
+  printf("usage : ./objectmarker --folder /path/to/folder/containing/images --file /path/to/file/where/to/write/informations\n\n");
+  return 0;
+}
+
+int checkoptions(int argc, char *argv[])
+{
+  if(argc == 2 && strcmp(argv[1], "help") == 0 || strcmp(argv[1], "--help") == 0 || strcmp(argv[1], "-h") == 0)
+  {
+    printhowtouse();
+  }
+  else if(argc > 2)
+  {
+    for(int i = 1; i < argc; i++)
+    {
+      if(strcmp(argv[i], "help") == 0)
+          return printhowtouse();
+      else if(strcmp(argv[i], "--help") == 0)
+          return printhowtouse();
+      else if(strcmp(argv[i], "-h") == 0)
+          return printhowtouse();
+      else if(strcmp(argv[i], "--folder") == 0)
+        {
+          if(i + 1 < argc && sizeof(argv[i + 1]) <= 128)
+          {
+            strcpy(imagefolder, argv[i + 1]);
+            i++;
+          }
+          else return printhowtouse();
+        }
+      else if (strcmp(argv[i], "--file") == 0)
+        {
+          if(i + 1 < argc && sizeof(argv[i + 1]) <= 128)
+          {
+            strcpy(savingfile, argv[i + 1]);
+            i++;
+          }
+          else return printhowtouse();
+        }
+      else
+        {
+          printf("Unknown command : %s\n", argv[i]);
+          return printhowtouse();
+        }
+    }
+  }
+  return 1;
+}
+
+int testoptions()
+{
+  if(strcmp(savingfile, "") == 0 || strcmp(imagefolder, "") == 0)
+  {
+    return printhowtouse();
+  }
+  if(file_exist(savingfile) == 1)
+  {
+    
+  }
+}
+
+int file_exist (char *filename)
+{
+  FILE *file;
+  if(file = fopen(filename, "r"))
+    {
+      fclose(file);
+      return 1;
+    }
+  return 0;
 }
