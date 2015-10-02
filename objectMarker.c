@@ -46,11 +46,8 @@ int printhowtouse()
 
 int checkoptions(int argc, char *argv[])
 {
-  if(argc == 2 && strcmp(argv[1], "help") == 0 || strcmp(argv[1], "--help") == 0 || strcmp(argv[1], "-h") == 0)
-  {
-    printhowtouse();
-  }
-  else if(argc > 2)
+  if(argc < 2) return printhowtouse();
+  else if(argc >= 2)
   {
     for(int i = 1; i < argc; i++)
     {
@@ -94,9 +91,10 @@ int testoptions()
   {
     return printhowtouse();
   }
-  if(file_exist(savingfile) == 1)
+  if(file_exist(savingfile) == 0)
   {
-    
+    FILE *file = fopen(savingfile, "ab+");
+    fclose(file);
   }
 }
 
