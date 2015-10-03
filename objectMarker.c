@@ -96,12 +96,14 @@ int testoptions()
     FILE *file = fopen(savingfile, "ab+");
     fclose(file);
   }
+  return 1;
 }
 
 int file_exist (char *filename)
 {
   FILE *file;
-  if(file = fopen(filename, "r"))
+  file = fopen(filename, "r");
+  if(file != NULL)
     {
       fclose(file);
       return 1;
