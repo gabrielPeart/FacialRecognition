@@ -6,12 +6,6 @@
 static char savingfile[128] = "";
 static char imagefolder[128] = "";
 
-void savedMarkedImage(char *imagepath, int width, int height, int marginleft, int margintop);
-int printhowtouse();
-int checkoptions(int argc, char *argv[]);
-int testoptions();
-int file_exist (char *filename);
-
 int main(int argc, char *argv[])
 {
   if(checkoptions(argc, argv) == 0) return 0;
