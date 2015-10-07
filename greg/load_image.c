@@ -22,17 +22,15 @@ void display_image(SDL_Surface *image)
 t_image *load_image(const char *img_name)
 {
   t_image *image;
-  SDL_Surface *surf;
 
-  surf = NULL;
-  surf = IMG_Load(img_name);
-  if (!surf)
+  image = malloc(sizeof(image));
+  image->surface = IMG_Load(img_name);
+  if (!image->surface)
   {
     warn("%s ", img_name);
     return NULL;
   }
-  display_image(surf);
-  image->surface = surf;
+  //display_image(image->surface);
   return image;
 }
 

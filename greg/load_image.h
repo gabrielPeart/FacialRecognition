@@ -7,13 +7,12 @@ typedef struct s_image t_image;
 
 void            display_image(SDL_Surface *image);
 t_image         *load_image(const char *img_name);
-int             *integral_image(SDL_Surface *image);
 void            sleep();
 
 struct          s_image
 {
   SDL_Surface   *surface;
-  int           *integral_image;
-}
+  unsigned long **integral;
+};
 
 #endif /* !LOAD_IMAGE_H_ */
