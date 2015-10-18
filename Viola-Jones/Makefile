@@ -20,4 +20,4 @@ clean:
 	@$(RM) $(OBJS)
 
 mrproper: clean
-	rm -rf $(EXEC)
+	rm -rf $(EXEC) *.d *.o main
