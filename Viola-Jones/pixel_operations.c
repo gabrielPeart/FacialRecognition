@@ -6,7 +6,7 @@ Uint8* pixelref(SDL_Surface *surf, unsigned x, unsigned y) {
   return (Uint8*)surf->pixels + y * surf->pitch + x * bpp;
 }
 
-Uint32 getpixel(SDL_Surface *surface, unsigned x, unsigned y) {
+int getpixel(SDL_Surface *surface, unsigned x, unsigned y) {
   Uint8 *p = pixelref(surface, x, y);
   switch(surface->format->BytesPerPixel) {
   case 1:
