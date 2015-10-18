@@ -26,6 +26,7 @@ t_image *load_image(const char *img_name)
 
   image = malloc(sizeof(image));
   image->surface = IMG_Load(img_name);
+  image->path = img_name;
   if (!image->surface)
   {
     warn("%s ", img_name);
@@ -33,8 +34,6 @@ t_image *load_image(const char *img_name)
   }
   image->bw = convert_to_grey_level(image->surface);
   init_sdl();
-  display_image(image->surface);
-  display_image(image->bw);
   return image;
 }
 
