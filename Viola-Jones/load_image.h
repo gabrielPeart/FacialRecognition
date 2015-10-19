@@ -13,10 +13,10 @@ void            sleep();
 
 struct          s_image
 {
-  const char     *path;
-  SDL_Surface    *surface;
-  SDL_Surface    *bw;
-  unsigned long **integral;
+    SDL_Surface    *surface;
+    SDL_Surface    *bw;
+    unsigned long **integral;
+    const char     *path;
 };
 
 #endif /* !LOAD_IMAGE_H_ */

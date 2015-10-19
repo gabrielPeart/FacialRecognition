@@ -1,5 +1,6 @@
 #include "load_image.h"
 #include "pixel_operations.h"
+#include "integral_image.h"
 #include <stdlib.h>
 #include <SDL/SDL.h>
 #include <SDL/SDL_image.h>
@@ -14,6 +15,7 @@ void display_image(SDL_Surface *image)
   position.x = 0;
   position.y = 0;
 
+  init_sdl();
   screen = SDL_SetVideoMode(image->w, image->h, 32, SDL_HWSURFACE);
   SDL_BlitSurface(image, NULL, screen, &position);
   SDL_Flip(screen);
@@ -24,7 +26,7 @@ t_image *load_image(const char *img_name)
 {
   t_image *image;
 
-  image = malloc(sizeof(image));
+  image = malloc(sizeof(t_image));
   image->surface = IMG_Load(img_name);
   image->path = img_name;
   if (!image->surface)
@@ -33,12 +35,12 @@ t_image *load_image(const char *img_name)
     return NULL;
   }
   image->bw = convert_to_grey_level(image->surface);
-  init_sdl();
+  integral_image(image);
   return image;
 }
 
 void init_sdl() {
-  if( SDL_Init(SDL_INIT_VIDEO)==-1 )
+  if(SDL_Init(SDL_INIT_VIDEO) == -1)
     errx(1,"Could not initialize SDL: %s.\n", SDL_GetError());
 }
 
@@ -75,4 +77,10 @@ void sleep() {
       default: break;
     }
   }
+}
+
+
+void free_image(t_image *image)
+{
+  free(image);
 }

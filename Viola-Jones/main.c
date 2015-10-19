@@ -2,6 +2,7 @@
 #include <err.h>
 #include "load_image.h"
 #include "integral_image.h"
+#include "pixel_operations.h"
 
 int main(int argc, char *argv[])
 {
@@ -11,14 +12,24 @@ int main(int argc, char *argv[])
     return 1;
   }
   t_image *image = load_image(argv[1]);
-  integral_image(image);
-  printf("total pixel number : %lu\n", pixels_sum(image, 0, 0, 2, 2));
-  for (int y = 0; y < 2; ++y)
+  for (int y = 0; y < 4; ++y)
   {
-    for (int x = 0; x < 2; ++x)
+    for (int x = 0; x < 4; ++x)
     {
-      warn("%lu | ", image->integral[y][x]);
+      printf("%5d | ", getgrey(image->bw, x, y));
     }
+    printf("\n");
   }
+  printf("\n");
+  for (int y = 0; y < 4; ++y)
+  {
+    for (int x = 0; x < 4; ++x)
+    {
+      printf("%10lu | ", image->integral[y][x]);
+    }
+    printf("\n");
+  }
+  printf("Max : %lu\n", image->integral[1427][2047]);
+  free(image);
   return 0;
 }
