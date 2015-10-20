@@ -16,7 +16,7 @@ int main(int argc, char *argv[])
   {
     for (int x = 0; x < 4; ++x)
     {
-      printf("%5d | ", getgrey(image->bw, x, y));
+      printf("%d | ", getgrey(image->bw, x, y));
     }
     printf("\n");
   }
@@ -29,7 +29,7 @@ int main(int argc, char *argv[])
     }
     printf("\n");
   }
-  printf("Max : %lu\n", image->integral[1427][2047]);
+//  printf("Max : %lu\n", image->integral[1427][2047]);
   free(image);
   return 0;
 }

@@ -60,7 +60,7 @@ SDL_Surface *convert_to_grey_level(SDL_Surface *surface)
     {
       pixel = getpixel(bw, x, y);
       SDL_GetRGB(pixel, bw->format, &r, &g, &b);
-      average = r * 0.3 + g * 0.59 + b * 0.11;
+      average = (r + b + g) / 3;
       putpixel(bw, x, y, SDL_MapRGB(bw->format, average, average, average));
     }
   }
