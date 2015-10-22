@@ -10,18 +10,18 @@ void            init_haar(t_haar *haar);
 void            init_feature(t_feature *ft);
 unsigned long   pixels_sum(t_image *image, unsigned x, unsigned y, unsigned w, unsigned h);
 
-struct         s_haar
+struct              s_haar
 {
-    t_feature *typea;
-    t_feature *typeb;
-    t_feature *typec;
-    t_feature *typed;
-    t_feature *typee;
+    t_feature      *typea;
+    t_feature      *typeb;
+    t_feature      *typec;
+    t_feature      *typed;
+    t_feature      *typee;
 };
 
-struct s_feature
+struct              s_feature
 {
-    unsigned long result;
+    unsigned long   result;
 };
 
 #endif /* !HAAR_FEATURES_H_ */

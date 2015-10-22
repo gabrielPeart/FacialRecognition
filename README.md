@@ -1,4 +1,4 @@
 # FacialRecognition
-Facial recognition project base on Viola-Jones algorithm.
+Facial recognition project based on Viola-Jones algorithm.
 
-By Paul SEMEL, Grégoire VERDIER, Aubin LAGORCE from EPITA (www.epita.fr)
+By Paul SEMEL, Grégoire VERDIER, Aubin LAGORCE from EPITA (http://www.epita.fr)
