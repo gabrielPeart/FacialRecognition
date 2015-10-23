@@ -103,39 +103,3 @@ void init_feature(t_feature *ft)
 {
   ft->result = 0;
 }
-
-/* long pixels_sum(int i, int j, int w, int h, t_image *image) */
-/* { */
-/*   long a; */
-/*   long b; */
-/*   long c; */
-/*   long d; */
-/*   long s1; */
-/*   if(i-1 > 0 && j-1>0) */
-/*   { */
-/*     a = image->integral[i-1][j-1]; */
-/*     b = image->integral[i-1][j+w-1]; */
-/*     c = image->integral[i+h-1][j-1]; */
-/*     d = image->integral[i+h-1][j+w-1]; */
-/*     s1 = a + d - b - c; */
-/*   } */
-/*   else if(i-1 > 0) */
-/*   { */
-/*     a = 0; */
-/*     b = image->integral[i-1][j]; */
-/*     c = 0; */
-/*     d = image->integral[i+h-1][j+w-1]; */
-/*     s1 = d - b; */
-/*   } */
-/*   else if(j-1 > 0) */
-/*   { */
-/*     c = image->integral[i+h-1][j-1]; */
-/*     d = image->integral[i+h-1][j+w-1]; */
-/*     s1 = d - c; */
-/*   } */
-/*   else */
-/*   { */
-/*     s1 = image->integral[i+h-1][j+w-1]; */
-/*   } */
-/*   return s1; */
-/* } */
