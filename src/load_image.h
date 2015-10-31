@@ -10,7 +10,7 @@ t_image        *load_image(const char *img_name);
 void            init_sdl();
 SDL_Surface    *convert_to_grey_level(SDL_Surface *surface);
 void            sleep();
-char           *file_name(char *path);
+char           *file_name(const char *path);
 
 struct                  s_image
 {

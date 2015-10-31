@@ -80,15 +80,15 @@ void sleep() {
   }
 }
 
-char *file_name(char *path)
+char *file_name(const char *path)
 {
   char *last_slash, *curr;
 
-  last_slash = path;
-  curr = path;
-  while (curr != '\0')
+  last_slash = (char *)path;
+  curr = (char *)path;
+  while (*curr != '\0')
   {
-    if (curr == '\\' || curr == '/')
+    if (*curr == '\\' || *curr == '/')
       last_slash = curr;
     ++curr;
   }
