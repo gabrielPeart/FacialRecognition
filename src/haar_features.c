@@ -106,10 +106,10 @@ void init_feature(t_feature *ft)
   ft->result = 0;
 }
 
-long double feature_scaling(unsigned int width, char *featuretype, int i, int j, int w, int h, t_image *image)
+double feature_scaling(unsigned int width, char *featuretype, int i, int j, int w, int h, t_image *image)
 {
   // mettre les div par 2 et 3 du ceil.. pas d'arrondi ?? à verifier
-  long double featureval = 0;
+  double featureval = 0;
   unsigned long s1;
   unsigned long s2;
   unsigned long s3;
@@ -182,3 +182,4 @@ int max_integer(double a, double b, int scale1, int scale2)
   if(k >= 0) k--;
   return k;
 }
+
