@@ -9,6 +9,8 @@ long            som1(size_t i, size_t j, size_t w, size_t h, t_image *image);
 void            init_haar(t_haar *haar);
 void            init_feature(t_feature *ft);
 unsigned long   pixels_sum(t_image *image, unsigned x, unsigned y, unsigned w, unsigned h);
+long double feature_scaling(unsigned int width, char *featuretype, int i, int j, int w, int h, t_image *image);
+int max_integer(double a, double b, int scale1, int scale2);
 
 struct              s_haar
 {
