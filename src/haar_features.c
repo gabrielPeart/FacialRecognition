@@ -126,7 +126,7 @@ double feature_scaling(unsigned int width, char *featuretype, int i, int j, int 
     i = ceil(i * width / 24);
     j = ceil(j * width / 24);
     h = ceil(h * width / 24);
-    w = max_integer(ceil(1 + (2 * w * width / 24)), width - j + 1, 1, 2);
+    w = max_integer(ceil((1 + (2 * w * width)) / 24) / 2, width - j + 1, 1, 2);
     s1 = pixels_sum(image, i, j, w, h);
     s2 = pixels_sum(image, i, j + w, w, h);
     featureval = ((s1 - s2) * a) / (2 * w * h);
@@ -138,7 +138,7 @@ double feature_scaling(unsigned int width, char *featuretype, int i, int j, int 
     i = ceil(i * width / 24);
     j = ceil(j * width / 24);
     h = ceil(h * width / 24);
-    w = max_integer(ceil(1 + (3 * w * width / 24)),width - j + 1, 1, 3);
+    w = max_integer(ceil((1 + (3 * w * width)) / 24) / 3,width - j + 1, 1, 3);
     s1 = pixels_sum(image, i, j, w, h);
     s2 = pixels_sum(image, i, j+w, w, h);
     s3 = pixels_sum(image, i, j+w+w, w, h);
@@ -151,7 +151,7 @@ double feature_scaling(unsigned int width, char *featuretype, int i, int j, int 
     i = ceil(i * width / 24);
     j = ceil(j * width / 24);
     w = ceil(w * width / 24);
-    h = max_integer(ceil(1 + (2 * h * width / 24)), width - i + 1, 1, 2);
+    h = max_integer(ceil((1 + (2 * h * width)) / 24) / 2, width - i + 1, 1, 2);
     s1 = pixels_sum(image, i, j, w, h);
     s2 = pixels_sum(image, i + h, j, w, h);
     featureval = ((s1 - s2) * a) / (2 * w * h);
@@ -162,7 +162,7 @@ double feature_scaling(unsigned int width, char *featuretype, int i, int j, int 
     i = ceil(i * width / 24);
     j = ceil(j * width / 24);
     w = ceil(w * width / 24);
-    h = max_integer(ceil(1 + (3 * h * width / 24)), width - i + 1, 1, 3);
+    h = max_integer(ceil((1 + (3 * h * width)) / 24) / 3, width - i + 1, 1, 3);
     s1 = pixels_sum(image, i, j, w, h);
     s2 = pixels_sum(image, i+h, j, w, h);
     s3 = pixels_sum(image, i+h+h, j, w, h);
@@ -173,7 +173,13 @@ double feature_scaling(unsigned int width, char *featuretype, int i, int j, int 
     long a = (4 * w * h);
     i = ceil(i * width / 24);
     j = ceil(j * width / 24);
-    //w = max_integer(ceil(1 + (2 * w * h) / 24) / 2, )
+    w = max_integer(ceil((1 + (2 * w * h)) / 24) / 2, width - j + 1, 1, 2);
+    h = max_integer(ceil((1 + (2 * h * width)) / 24) / 2, width - i + 1, 1, 2);
+    s1 = pixels_sum(image, i, j, w, h);
+    s2 = pixels_sum(image, i+h, j, w, h);
+    s3 = pixels_sum(image, i, j+w, w, h);
+    s4 = pixels_sum(image, i+h,j+w,w,h);
+    featureval = ((s1 - s2 - s3 + s4) * a) / 4 * h * w;
   }
   return featureval;
 }
