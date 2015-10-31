@@ -1,7 +1,7 @@
 CC = gcc -std=c99
 RM = rm -f
 
-CFLAGS += -Wall -Wextra -pedantic -O3 -lSDL -lSDLmain -lSDL_image
+CFLAGS += -Wall -Wextra -pedantic -O3 -lSDL -lSDLmain -lSDL_image -lm
 
 LDFLAGS =
 
