@@ -29,6 +29,7 @@ t_image *load_image(const char *img_name)
   image = malloc(sizeof(t_image));
   image->surface = IMG_Load(img_name);
   image->path = img_name;
+  image->haar_results = NULL;
   if (!image->surface)
   {
     warn("%s ", img_name);
@@ -79,8 +80,17 @@ void sleep() {
   }
 }
 
-
-void free_image(t_image *image)
+char *file_name(char *path)
 {
-  free(image);
+  char *last_slash, *curr;
+
+  last_slash = path;
+  curr = path;
+  while (curr != '\0')
+  {
+    if (curr == '\\' || curr == '/')
+      last_slash = curr;
+    ++curr;
+  }
+  return (last_slash + 1);
 }
