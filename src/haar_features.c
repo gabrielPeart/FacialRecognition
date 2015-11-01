@@ -16,69 +16,69 @@ void compute_features(t_image *image, FILE *haar_results)
     for(int j = 0; j < image->bw->w; j++)
     {
       /* feature type a */
-      for(int h = 1; i + h - 1 < image->bw->h; h++)
+      for(int h = 1; i + h< image->bw->h; h++)
       {
-        for(int w = 1; j + (2 * w) - 1 < image->bw->w; w++)
+        for(int w = 1; j + (2 * w)< image->bw->w; w++)
         {
-          s1 = pixels_sum(image, i, j, w, h);
-          //s2 = pixels_sum(image, i, j + w, w, h);
+          s1 = pixels_sum(image, i, j, j+w, i+h);
+          s2 = pixels_sum(image, i, j+w, w+j+w, i+h);
           findex++;
           //écrire (1, i, j, w, h):s1 - s2
-          //fprintf(haar_results, "%lu ", s1 - s2);
+          fprintf(haar_results, "%lu ", s1 - s2);
         }
       }
       /* feature type b */
-      /*for(int h = 1; i+h-1 < image->bw->h; h++)
+      for(int h = 1; i+h < image->bw->h; h++)
       {
-        for(int w = 1; j+(3*w)-1<image->bw->w; w++)
+        for(int w = 1; j+(3*w)<image->bw->w; w++)
         {
-          s1 = pixels_sum(image, i, j, w, h);
-          s2 = pixels_sum(image, i, j+w, w, h);
-          s3 = pixels_sum(image, i, j+w+w, w, h);
+          s1 = pixels_sum(image, i, j, j+w, i+h);
+          s2 = pixels_sum(image, i, j+w, w+j+w, i+h);
+          s3 = pixels_sum(image, i, j+w+w, j+w+w+w, i+h);
           findex++;
           //écrire (2,i,j,w,h):S1 - S2 + S3
-          //fprintf(haar_results, "%lu ", s1 - s2 + s3);
+          fprintf(haar_results, "%lu ", s1 - s2 + s3);
         }
-      }*/
+      }
       /* feature type c */
-      /*for(int h = 1; i+(2*h)-1 < image->bw->h; h++)
+      for(int h = 1; i+(2*h) < image->bw->h; h++)
       {
-        for(int w = 1; j+w-1<image->bw->w; w++)
+        for(int w = 1; j+w<image->bw->w; w++)
         {
-          s1 = pixels_sum(image, i, j, w, h);
-          s2 = pixels_sum(image, i + h, j, w, h);
+          s1 = pixels_sum(image, i, j, j+w, i+h);
+          s2 = pixels_sum(image, i + h, j, j+w, i+h+h);
           findex++;
           //écrire (3,i,j,w,h):S1 - S2
-          //fprintf(haar_results, "%lu ", s1 - s2);
+          fprintf(haar_results, "%lu ", s1 - s2);
         }
-      }*/
+      }
       /* feature type d */
-      /*for(int h = 1; i+(3*h)-1 < image->bw->h; h++)
+      for(int h = 1; i+(3*h)< image->bw->h; h++)
       {
-        for(int w = 1; j+w-1<image->bw->w; w++)
+        for(int w = 1; j+w<image->bw->w; w++)
         {
-          s1 = pixels_sum(image, i, j, w, h);
-          s2 = pixels_sum(image, i+h, j, w, h);
-          s3 = pixels_sum(image, i+h+h, j, w, h);
+          s1 = pixels_sum(image, i, j, j+w, i+h);
+          s2 = pixels_sum(image, i+h, j, j+w, i+h+h);
+          s3 = pixels_sum(image, i+h+h, j, j+w, i+h+h+h);
           findex++;
           //écrire (4,i,j,w,h):S1 - S2 + S3 
-          //fprintf(haar_results, "%lu ", s1 - s2 + s3);
+          fprintf(haar_results, "%lu ", s1 - s2 + s3);
         }
-      }*/
+      }
       /* feature type e */
-      /*for(int h = 1; i+(2*h)-1 < image->bw->h; h++)
+      for(int h = 1; i+(2*h)-1 < image->bw->h; h++)
       {
         for(int w = 1; j+(2*w)-1<image->bw->w; w++)
         {
-          s1 = pixels_sum(image, i, j, w, h);
-          s2 = pixels_sum(image, i+h, j, w, h);
-          s3 = pixels_sum(image, i, j+w, w, h);
-          s4 = pixels_sum(image, i+h,j+w,w,h);
+          s1 = pixels_sum(image, i, j, j+w, i+h);
+          s2 = pixels_sum(image, i+h, j, j+w, i+h+h);
+          s3 = pixels_sum(image, i, j+w, j+w+w, i+h);
+          s4 = pixels_sum(image, i+h,j+w,j+w+w,i+h+h);
           findex++;
           //écrire (5,i,j,w,h):S1 - S2 - S3 + S4
-          //fprintf(haar_results, "%lu ", s1 - s2 - s3 + s4);
+          fprintf(haar_results, "%lu ", s1 - s2 - s3 + s4);
         }
-      }*/
+      }
     }
   }
   //fclose(haar_results);
@@ -87,14 +87,14 @@ void compute_features(t_image *image, FILE *haar_results)
 unsigned long pixels_sum(t_image *image, unsigned x, unsigned y, unsigned width, unsigned height)
 {
   unsigned long sum;
-
-  sum = image->integral[y + height - 1][x + width - 1];
+  printf("%d-%d-%d-%d\n",x,y,width,height);
+  sum = image->integral[height - 1][width - 1];
   if (y > 0 && x > 0)
     sum += image->integral[y - 1][x - 1];
   if (y > 0)
-    sum -= image->integral[y - 1][x + width - 1];
+    sum -= image->integral[y - 1][width - 1];
   if (x > 0)
-    sum -= image->integral[y + height - 1][x - 1];
+    sum -= image->integral[height - 1][x - 1];
   return sum;
 }
 
