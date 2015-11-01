@@ -10,13 +10,14 @@ int main(int argc, char *argv[])
     printf("Expect one argument...\n");
     return 1;
   }
+  
+  FILE *lel = fopen("mange.txt", "a+");
+  if (lel == NULL)
+    warn("lelelelelel");
+  fprintf(lel, "%d ", 5);
   t_image *image = load_image(argv[1]);
-  warn("error");
-  FILE *lel = fopen("mange.txt", "r");
-  //if (lel == NULL)
-    //warn("lelelelelel");
-  //fprintf(lel, "%d ", 5);
-  //compute_features(image, lel);
+  compute_features(image, lel);
+  fclose(lel);
   free(image);
   return 0;
 }

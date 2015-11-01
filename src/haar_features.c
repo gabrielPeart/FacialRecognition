@@ -21,14 +21,14 @@ void compute_features(t_image *image, FILE *haar_results)
         for(int w = 1; j + (2 * w) - 1 < image->bw->w; w++)
         {
           s1 = pixels_sum(image, i, j, w, h);
-          s2 = pixels_sum(image, i, j + w, w, h);
+          //s2 = pixels_sum(image, i, j + w, w, h);
           findex++;
-          /* écrire (1, i, j, w, h):s1 - s2 */
-          fprintf(haar_results, "%lu ", s1 - s2);
+          //écrire (1, i, j, w, h):s1 - s2
+          //fprintf(haar_results, "%lu ", s1 - s2);
         }
       }
       /* feature type b */
-      for(int h = 1; i+h-1 < image->bw->h; h++)
+      /*for(int h = 1; i+h-1 < image->bw->h; h++)
       {
         for(int w = 1; j+(3*w)-1<image->bw->w; w++)
         {
@@ -36,24 +36,24 @@ void compute_features(t_image *image, FILE *haar_results)
           s2 = pixels_sum(image, i, j+w, w, h);
           s3 = pixels_sum(image, i, j+w+w, w, h);
           findex++;
-          /* écrire (2,i,j,w,h):S1 - S2 + S3 */
-          fprintf(haar_results, "%lu ", s1 - s2 + s3);
+          //écrire (2,i,j,w,h):S1 - S2 + S3
+          //fprintf(haar_results, "%lu ", s1 - s2 + s3);
         }
-      }
+      }*/
       /* feature type c */
-      for(int h = 1; i+(2*h)-1 < image->bw->h; h++)
+      /*for(int h = 1; i+(2*h)-1 < image->bw->h; h++)
       {
         for(int w = 1; j+w-1<image->bw->w; w++)
         {
           s1 = pixels_sum(image, i, j, w, h);
           s2 = pixels_sum(image, i + h, j, w, h);
           findex++;
-          /* écrire (3,i,j,w,h):S1 - S2 */
+          //écrire (3,i,j,w,h):S1 - S2
           //fprintf(haar_results, "%lu ", s1 - s2);
         }
-      }
+      }*/
       /* feature type d */
-      for(int h = 1; i+(3*h)-1 < image->bw->h; h++)
+      /*for(int h = 1; i+(3*h)-1 < image->bw->h; h++)
       {
         for(int w = 1; j+w-1<image->bw->w; w++)
         {
@@ -61,12 +61,12 @@ void compute_features(t_image *image, FILE *haar_results)
           s2 = pixels_sum(image, i+h, j, w, h);
           s3 = pixels_sum(image, i+h+h, j, w, h);
           findex++;
-          /* écrire (4,i,j,w,h):S1 - S2 + S3 */
+          //écrire (4,i,j,w,h):S1 - S2 + S3 
           //fprintf(haar_results, "%lu ", s1 - s2 + s3);
         }
-      }
+      }*/
       /* feature type e */
-      for(int h = 1; i+(2*h)-1 < image->bw->h; h++)
+      /*for(int h = 1; i+(2*h)-1 < image->bw->h; h++)
       {
         for(int w = 1; j+(2*w)-1<image->bw->w; w++)
         {
@@ -75,10 +75,10 @@ void compute_features(t_image *image, FILE *haar_results)
           s3 = pixels_sum(image, i, j+w, w, h);
           s4 = pixels_sum(image, i+h,j+w,w,h);
           findex++;
-          /* écrire (5,i,j,w,h):S1 - S2 - S3 + S4 */
+          //écrire (5,i,j,w,h):S1 - S2 - S3 + S4
           //fprintf(haar_results, "%lu ", s1 - s2 - s3 + s4);
         }
-      }
+      }*/
     }
   }
   //fclose(haar_results);
