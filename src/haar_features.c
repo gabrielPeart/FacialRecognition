@@ -9,7 +9,7 @@ void compute_features(t_image *image)
 {
   int findex = 0;
   unsigned long s1, s2, s3, s4;
-  image->haar_results = fopen(strcat("haar_results", file_name(image->path)), "w");
+  image->haar_results = fopen(strcat("haar_results_", file_name(image->path)), "w");
 
   for(int i = 0; i < image->bw->h; i++)
   {
