@@ -11,7 +11,12 @@ int main(int argc, char *argv[])
     return 1;
   }
   t_image *image = load_image(argv[1]);
-  compute_features(image);
-  free(image);
+  /* FILE *lel = NULL; */
+  /* lel = fopen("/home/greg/Dropbox/Code/C/FacialRecognition/src/mange.txt", "w+"); */
+  /* if (lel == NULL) */
+  /*   warn("lelelelelel"); */
+  /* fprintf(lel, "%d ", 5); */
+  /* compute_features(image, lel); */
+  //free(image);
   return 0;
 }

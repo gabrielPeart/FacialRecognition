@@ -4,7 +4,7 @@
 typedef struct s_haar t_haar;
 typedef struct s_feature t_feature;
 
-void            compute_features(t_image *image);
+void            compute_features(t_image *image, FILE *haar_results);
 void            init_haar(t_haar *haar);
 void            init_feature(t_feature *ft);
 unsigned long   pixels_sum(t_image *image, unsigned x, unsigned y, unsigned w, unsigned h);

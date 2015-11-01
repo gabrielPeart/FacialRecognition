@@ -25,11 +25,9 @@ void display_image(SDL_Surface *image)
 t_image *load_image(const char *path)
 {
   t_image *image;
-
   image = malloc(sizeof(t_image));
   image->surface = IMG_Load(path);
   image->path = path;
-  image->haar_results = NULL;
   if (!image->surface)
   {
     warn("%s ", path);

@@ -18,7 +18,6 @@ struct                  s_image
     SDL_Surface         *bw;
     unsigned long      **integral;
     const char          *path;
-    FILE                *haar_results;
 };
 
 #endif /* !LOAD_IMAGE_H_ */
