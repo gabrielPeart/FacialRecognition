@@ -20,7 +20,6 @@ void integral_image(t_image *image)
 
 void init_integral_image(t_image *image)
 {
-  warn("h: %d; w: %d", image->bw->h, image->bw->w);
   image->integral = malloc(image->bw->h * sizeof(int *));
   for (int i = 0; i < image->bw->h; ++i)
     image->integral[i] = malloc(image->bw->w * sizeof(int));

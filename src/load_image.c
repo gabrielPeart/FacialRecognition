@@ -61,7 +61,9 @@ SDL_Surface *convert_to_grey_level(SDL_Surface *surface)
       SDL_GetRGB(pixel, bw->format, &r, &g, &b);
       average = (r + b + g) / 3;
       putpixel(bw, x, y, SDL_MapRGB(bw->format, average, average, average));
+      printf("%4d ", average);
     }
+    printf("\n");
   }
   return bw;
 }
