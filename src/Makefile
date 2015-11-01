@@ -1,9 +1,9 @@
 CC = gcc -std=c99
 RM = rm -f
 
-CFLAGS += -Wall -Wextra -pedantic -O3 -lSDL -lSDLmain -lSDL_image -lm
+CFLAGS += -Wall -Wextra -pedantic -O3 -lSDL -lSDLmain -lSDL_image
 
-LDFLAGS =
+LDFLAGS = -lm
 
 EXEC = main
 
@@ -14,7 +14,7 @@ OBJS = $(SRCS:.c=.o)
 all: $(EXEC)
 
 main: $(OBJS)
-	$(CC) -o $@ $^ $(CFLAGS)
+	$(CC) -o $@ $^ $(CFLAGS) $(LDFLAGS)
 
 clean:
 	@$(RM) $(OBJS)

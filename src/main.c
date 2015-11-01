@@ -12,6 +12,6 @@ int main(int argc, char *argv[])
   }
   t_image *image = load_image(argv[1]);
   //compute_features(image);
-  free(image);
+  //free(image);
   return 0;
 }
