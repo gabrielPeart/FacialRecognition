@@ -16,7 +16,6 @@ void integral_image(t_image *image)
   for (int y = 1; y < image->bw->h; ++y)
     for (int x = 1; x < image->bw->w; ++x)
       image->integral[y][x] = getgrey(image->bw, x, y) + image->integral[y - 1][x] + image->integral[y][x - 1] - image->integral[y - 1][x - 1];
-
 }
 
 void init_integral_image(t_image *image)
