@@ -87,7 +87,6 @@ void compute_features(t_image *image, FILE *haar_results)
 unsigned long pixels_sum(t_image *image, unsigned x, unsigned y, unsigned width, unsigned height)
 {
   unsigned long sum;
-  printf("%d-%d-%d-%d\n",x,y,width,height);
   sum = image->integral[height - 1][width - 1];
   if (y > 0 && x > 0)
     sum += image->integral[y - 1][x - 1];
