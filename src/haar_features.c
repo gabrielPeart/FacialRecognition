@@ -24,7 +24,7 @@ void compute_features(t_image *image)
           s2 = pixels_sum(image, i, j + w, w, h);
           findex++;
           /* écrire (1, i, j, w, h):s1 - s2 */
-          fprintf("%lu ", s1 - s2);
+          fprintf(image->haar_results, "%lu ", s1 - s2);
         }
       }
       /* feature type b */
@@ -37,7 +37,7 @@ void compute_features(t_image *image)
           s3 = pixels_sum(image, i, j+w+w, w, h);
           findex++;
           /* écrire (2,i,j,w,h):S1 - S2 + S3 */
-          fprintf("%lu ", s1 - s2 + s3);
+          fprintf(image->haar_results, "%lu ", s1 - s2 + s3);
         }
       }
       /* feature type c */
@@ -49,7 +49,7 @@ void compute_features(t_image *image)
           s2 = pixels_sum(image, i + h, j, w, h);
           findex++;
           /* écrire (3,i,j,w,h):S1 - S2 */
-          fprintf("%lu ", s1 - s2);
+          fprintf(image->haar_results, "%lu ", s1 - s2);
         }
       }
       /* feature type d */
@@ -62,7 +62,7 @@ void compute_features(t_image *image)
           s3 = pixels_sum(image, i+h+h, j, w, h);
           findex++;
           /* écrire (4,i,j,w,h):S1 - S2 + S3 */
-          fprintf("%lu ", s1 - s2 + s3);
+          fprintf(image->haar_results, "%lu ", s1 - s2 + s3);
         }
       }
       /* feature type e */
@@ -76,7 +76,7 @@ void compute_features(t_image *image)
           s4 = pixels_sum(image, i+h,j+w,w,h);
           findex++;
           /* écrire (5,i,j,w,h):S1 - S2 - S3 + S4 */
-          fprintf("%lu ", s1 - s2 - s3 + s4);
+          fprintf(image->haar_results, "%lu ", s1 - s2 - s3 + s4);
         }
       }
     }
