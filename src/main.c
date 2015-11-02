@@ -10,7 +10,7 @@ int main(int argc, char *argv[])
     printf("Expect one argument...\n");
     return 1;
   }
-   FILE *lel = fopen("mange.txt", "a+"); 
+   FILE *lel = fopen("test.txt", "a+"); 
    if (lel == NULL) 
      warn("lelelelelel"); 
    t_image *image = load_image(argv[1]);

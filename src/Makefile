@@ -21,3 +21,4 @@ clean:
 
 mrproper: clean
 	rm -rf $(EXEC) *.d *.o main
+	echo > test.txt

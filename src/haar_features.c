@@ -24,7 +24,7 @@ void compute_features(t_image *image, FILE *haar_results)
           s2 = pixels_sum(image, i, j+w, w+j+w, i+h);
           findex++;
           //écrire (1, i, j, w, h):s1 - s2
-          fprintf(haar_results, "%lu ", s1 - s2);
+          fprintf(haar_results, "(1,%d,%d,%d,%d):%lu\n",i, j, w, h, s1 - s2);
         }
       }
       /* feature type b */
@@ -37,7 +37,7 @@ void compute_features(t_image *image, FILE *haar_results)
           s3 = pixels_sum(image, i, j+w+w, j+w+w+w, i+h);
           findex++;
           //écrire (2,i,j,w,h):S1 - S2 + S3
-          fprintf(haar_results, "%lu ", s1 - s2 + s3);
+          fprintf(haar_results, "(2,%d,%d,%d,%d):%lu\n",i, j, w, h, s1 - s2 + s3);
         }
       }
       /* feature type c */
@@ -49,7 +49,7 @@ void compute_features(t_image *image, FILE *haar_results)
           s2 = pixels_sum(image, i + h, j, j+w, i+h+h);
           findex++;
           //écrire (3,i,j,w,h):S1 - S2
-          fprintf(haar_results, "%lu ", s1 - s2);
+          fprintf(haar_results, "(3,%d,%d,%d,%d):%lu\n", i, j, w, h, s1 - s2);
         }
       }
       /* feature type d */
@@ -62,7 +62,7 @@ void compute_features(t_image *image, FILE *haar_results)
           s3 = pixels_sum(image, i+h+h, j, j+w, i+h+h+h);
           findex++;
           //écrire (4,i,j,w,h):S1 - S2 + S3 
-          fprintf(haar_results, "%lu ", s1 - s2 + s3);
+          fprintf(haar_results, "(4,%d,%d,%d,%d):%lu\n", i, j, w, h , s1 - s2 + s3);
         }
       }
       /* feature type e */
@@ -76,7 +76,7 @@ void compute_features(t_image *image, FILE *haar_results)
           s4 = pixels_sum(image, i+h,j+w,j+w+w,i+h+h);
           findex++;
           //écrire (5,i,j,w,h):S1 - S2 - S3 + S4
-          fprintf(haar_results, "%lu ", s1 - s2 - s3 + s4);
+          fprintf(haar_results, "(5,%d,%d,%d,%d):%lu\n",i, j, w, h, s1 - s2 - s3 + s4);
         }
       }
     }
@@ -127,8 +127,8 @@ double feature_scaling(unsigned int width, char *featuretype, int i, int j, int 
     j = ceil(j * width / 24);
     h = ceil(h * width / 24);
     w = max_integer(ceil((1 + (2 * w * width)) / 24) / 2, width - j + 1, 1, 2);
-    s1 = pixels_sum(image, i, j, w, h);
-    s2 = pixels_sum(image, i, j + w, w, h);
+    s1 = pixels_sum(image, i, j, j+w, i+h);
+    s2 = pixels_sum(image, i, j+w, w+j+w, i+h);
     featureval = ((s1 - s2) * a) / (2 * w * h);
     return featureval;
   }
@@ -139,9 +139,9 @@ double feature_scaling(unsigned int width, char *featuretype, int i, int j, int 
     j = ceil(j * width / 24);
     h = ceil(h * width / 24);
     w = max_integer(ceil((1 + (3 * w * width)) / 24) / 3,width - j + 1, 1, 3);
-    s1 = pixels_sum(image, i, j, w, h);
-    s2 = pixels_sum(image, i, j+w, w, h);
-    s3 = pixels_sum(image, i, j+w+w, w, h);
+    s1 = pixels_sum(image, i, j, j+w, i+h);
+    s2 = pixels_sum(image, i, j+w, w+j+w, i+h);
+    s3 = pixels_sum(image, i, j+w+w, j+w+w+w, i+h);
     featureval = ((s1 - s2 + s3) * a) / (3 * w * h);
     return featureval;
   }
@@ -152,8 +152,8 @@ double feature_scaling(unsigned int width, char *featuretype, int i, int j, int 
     j = ceil(j * width / 24);
     w = ceil(w * width / 24);
     h = max_integer(ceil((1 + (2 * h * width)) / 24) / 2, width - i + 1, 1, 2);
-    s1 = pixels_sum(image, i, j, w, h);
-    s2 = pixels_sum(image, i + h, j, w, h);
+    s1 = pixels_sum(image, i, j, j+w, i+h);
+    s2 = pixels_sum(image, i + h, j, j+w, i+h+h);
     featureval = ((s1 - s2) * a) / (2 * w * h);
   }
   if(strcmp(featuretype, "typed") == 0)
@@ -163,9 +163,9 @@ double feature_scaling(unsigned int width, char *featuretype, int i, int j, int 
     j = ceil(j * width / 24);
     w = ceil(w * width / 24);
     h = max_integer(ceil((1 + (3 * h * width)) / 24) / 3, width - i + 1, 1, 3);
-    s1 = pixels_sum(image, i, j, w, h);
-    s2 = pixels_sum(image, i+h, j, w, h);
-    s3 = pixels_sum(image, i+h+h, j, w, h);
+    s1 = pixels_sum(image, i, j, j+w, i+h);
+    s2 = pixels_sum(image, i+h, j, j+w, i+h+h);
+    s3 = pixels_sum(image, i+h+h, j, j+w, i+h+h+h);
     featureval = ((s1 - s2 + s3) * a) / (3 * w * h);
   }
   if(strcmp(featuretype, "typee") == 0)
@@ -175,10 +175,10 @@ double feature_scaling(unsigned int width, char *featuretype, int i, int j, int 
     j = ceil(j * width / 24);
     w = max_integer(ceil((1 + (2 * w * h)) / 24) / 2, width - j + 1, 1, 2);
     h = max_integer(ceil((1 + (2 * h * width)) / 24) / 2, width - i + 1, 1, 2);
-    s1 = pixels_sum(image, i, j, w, h);
-    s2 = pixels_sum(image, i+h, j, w, h);
-    s3 = pixels_sum(image, i, j+w, w, h);
-    s4 = pixels_sum(image, i+h,j+w,w,h);
+    s1 = pixels_sum(image, i, j, j+w, i+h);
+    s2 = pixels_sum(image, i+h, j, j+w, i+h+h);
+    s3 = pixels_sum(image, i, j+w, j+w+w, i+h);
+    s4 = pixels_sum(image, i+h,j+w,j+w+w,i+h+h);
     featureval = ((s1 - s2 - s3 + s4) * a) / 4 * h * w;
   }
   return featureval;
@@ -195,3 +195,7 @@ int max_integer(double a, double b, int scale1, int scale2)
   return k;
 }
 
+/*void decision_stump(int *training_exemple, int *e1, int *weight, int *e2)
+{
+  
+}*/
